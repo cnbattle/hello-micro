@@ -7,11 +7,11 @@
 
 [client web相关](web/hello-web/main.go)
 
-## 运行
+## run
 ```
-# 运行微服务
+# run micro service
 ~ go run srv/hello-srv/main.go
-# 运行web
+# run web service
 ~ cd web/hello-web/   
 ~ go run main.go
 
