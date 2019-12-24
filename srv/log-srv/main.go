@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 
-	proto "github.com/cnbattle/hello-micro/proto/log"
+	logProto "github.com/cnbattle/hello-micro/proto/log"
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/util/log"
 )
@@ -11,7 +11,7 @@ import (
 type Sub struct {
 }
 
-func (s Sub) Process(ctx context.Context, evt *proto.LogEvt) error {
+func (s Sub) Process(ctx context.Context, evt *logProto.LogEvt) error {
 	// 业务逻辑
 	log.Logf("[sub] 收到日志: %v", evt.Msg)
 	return nil
