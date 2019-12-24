@@ -2,13 +2,10 @@ package main
 
 import (
 	"context"
-	"encoding/json"
-
 	"github.com/cnbattle/hello-micro/proto/hello"
 	logProto "github.com/cnbattle/hello-micro/proto/log"
 	"github.com/cnbattle/hello-micro/srv/hello-srv/handler"
 	"github.com/micro/go-micro"
-	"github.com/micro/go-micro/broker"
 	"github.com/micro/go-micro/client"
 	"github.com/micro/go-micro/server"
 	"github.com/micro/go-micro/util/log"
@@ -48,25 +45,9 @@ func regLogger(cli client.Client) server.HandlerWrapper {
 	return func(handlerFunc server.HandlerFunc) server.HandlerFunc {
 		// 中间操作
 		return func(ctx context.Context, req server.Request, rsp interface{}) error {
-			evt := logProto.LogEvt{
+			_ = pub.Publish(ctx, &logProto.LogEvt{
 				Msg: "hello",
-			}
-			body, err := json.Marshal(evt)
-			if err != nil {
-				log.Info("[hello] json.Marshal err:", err)
-			}
-
-			msg := &broker.Message{
-				Header: map[string]string{
-					"serviceName": "hello",
-				},
-				Body: body,
-			}
-
-			if err := pub.Publish(ctx, msg); err != nil {
-				log.Info("[hello] 发送日志 err:", err)
-			}
-
+			})
 			return handlerFunc(ctx, req, rsp)
 		}
 	}
