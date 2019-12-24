@@ -20,6 +20,7 @@ func (s Sub) Process(ctx context.Context, evt *logProto.LogEvt) error {
 func main() {
 	service := micro.NewService(
 		micro.Name("go.micro.hello.micro.srv.log"),
+		micro.Version("latest"),
 	)
 
 	service.Init()

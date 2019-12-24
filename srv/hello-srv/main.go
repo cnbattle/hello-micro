@@ -45,12 +45,9 @@ func main() {
 func regLogger(cli client.Client) server.HandlerWrapper {
 	//初始化操作
 	pub := micro.NewPublisher("go.micro.hello.micro.topic.log", cli)
-
 	return func(handlerFunc server.HandlerFunc) server.HandlerFunc {
 		// 中间操作
 		return func(ctx context.Context, req server.Request, rsp interface{}) error {
-			log.Info("[hello] 准备发送日志")
-
 			evt := logProto.LogEvt{
 				Msg: "hello",
 			}
@@ -58,6 +55,7 @@ func regLogger(cli client.Client) server.HandlerWrapper {
 			if err != nil {
 				log.Info("[hello] json.Marshal err:", err)
 			}
+
 			msg := &broker.Message{
 				Header: map[string]string{
 					"serviceName": "hello",
@@ -65,8 +63,7 @@ func regLogger(cli client.Client) server.HandlerWrapper {
 				Body: body,
 			}
 
-			err = pub.Publish(ctx, msg)
-			if err != nil {
+			if err := pub.Publish(ctx, msg); err != nil {
 				log.Info("[hello] 发送日志 err:", err)
 			}
 
