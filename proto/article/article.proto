@@ -12,7 +12,7 @@ message Response {
     int64 view_num = 5;
 }
 
-service Desc {
+service article {
     rpc Detail(Request) returns (Response){
     }
 }

@@ -31,32 +31,32 @@ var _ context.Context
 var _ client.Option
 var _ server.Option
 
-// Client API for Desc service
+// Client API for Article service
 
-type DescService interface {
+type ArticleService interface {
 	Detail(ctx context.Context, in *Request, opts ...client.CallOption) (*Response, error)
 }
 
-type descService struct {
+type articleService struct {
 	c    client.Client
 	name string
 }
 
-func NewDescService(name string, c client.Client) DescService {
+func NewArticleService(name string, c client.Client) ArticleService {
 	if c == nil {
 		c = client.NewClient()
 	}
 	if len(name) == 0 {
-		name = "desc"
+		name = "article"
 	}
-	return &descService{
+	return &articleService{
 		c:    c,
 		name: name,
 	}
 }
 
-func (c *descService) Detail(ctx context.Context, in *Request, opts ...client.CallOption) (*Response, error) {
-	req := c.c.NewRequest(c.name, "Desc.Detail", in)
+func (c *articleService) Detail(ctx context.Context, in *Request, opts ...client.CallOption) (*Response, error) {
+	req := c.c.NewRequest(c.name, "Article.Detail", in)
 	out := new(Response)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -65,27 +65,27 @@ func (c *descService) Detail(ctx context.Context, in *Request, opts ...client.Ca
 	return out, nil
 }
 
-// Server API for Desc service
+// Server API for Article service
 
-type DescHandler interface {
+type ArticleHandler interface {
 	Detail(context.Context, *Request, *Response) error
 }
 
-func RegisterDescHandler(s server.Server, hdlr DescHandler, opts ...server.HandlerOption) error {
-	type desc interface {
+func RegisterArticleHandler(s server.Server, hdlr ArticleHandler, opts ...server.HandlerOption) error {
+	type article interface {
 		Detail(ctx context.Context, in *Request, out *Response) error
 	}
-	type Desc struct {
-		desc
+	type Article struct {
+		article
 	}
-	h := &descHandler{hdlr}
-	return s.Handle(s.NewHandler(&Desc{h}, opts...))
+	h := &articleHandler{hdlr}
+	return s.Handle(s.NewHandler(&Article{h}, opts...))
 }
 
-type descHandler struct {
-	DescHandler
+type articleHandler struct {
+	ArticleHandler
 }
 
-func (h *descHandler) Detail(ctx context.Context, in *Request, out *Response) error {
-	return h.DescHandler.Detail(ctx, in, out)
+func (h *articleHandler) Detail(ctx context.Context, in *Request, out *Response) error {
+	return h.ArticleHandler.Detail(ctx, in, out)
 }

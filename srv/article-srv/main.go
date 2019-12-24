@@ -14,7 +14,7 @@ func main() {
 
 	service.Init()
 
-	_ = article.RegisterDescHandler(service.Server(), new(handler.Handler))
+	_ = article.RegisterArticleHandler(service.Server(), new(handler.Handler))
 
 	if err := service.Run(); err != nil {
 		log.Fatal(err)
