@@ -68,7 +68,6 @@ func regLogger(cli client.Client) server.HandlerWrapper {
 			}
 
 			return handlerFunc(ctx, req, rsp)
-			//return nil
 		}
 	}
 }
