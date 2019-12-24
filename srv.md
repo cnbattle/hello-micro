@@ -2,6 +2,9 @@
 
 # 基本开发流程
 1. 定义接口
+
+[hello.proto](proto/hello/hello.proto)
+
 - 编写proto文件
 ```proto
 syntax = "proto3";
@@ -26,9 +29,16 @@ protoc --proto_path=. --micro_out=. --go_out=. [你的proto文件名].proto
 ```
 
 2. 实现接口
+
+[handler.go](srv/hello-srv/handler/handler.go)
+[service.go](srv/hello-srv/service/service.go)
+
 - 定义Handler 
 
 3. 创建服务
+
+[main.go](srv/hello-srv/main.go)
+
 - NewServer服务
 - Init 初始化
 - 挂在接口
