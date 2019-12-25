@@ -1,5 +1,8 @@
 ## 介绍 
-> 实现了一个简单`go.micro.hello.micro.svr.hello`服务 `Hi`方法,简单实现了在web api中调用`go.micro.hello.micro.svr.hello `微服务
+
+[![Build Status](https://cloud.drone.io/api/badges/cnbattle/hello-micro/status.svg)](https://cloud.drone.io/cnbattle/hello-micro)
+
+> go-micro 相关
 
 ## 微服务
 
