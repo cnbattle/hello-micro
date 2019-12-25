@@ -2,6 +2,7 @@ package jwt
 
 import (
 	"errors"
+	"github.com/cnbattle/hello-micro/srv/user-srv/models"
 	"github.com/dgrijalva/jwt-go"
 	"time"
 )
@@ -17,27 +18,28 @@ type User struct {
 
 var (
 	Secret     = "test_secret" // 加盐
-	ExpireTime = 10            // token有效期
+	ExpireTime = 3600          // token有效期
 )
 
 type JWTClaims struct { // token里面添加用户信息，验证token后可能会用到用户信息
 	jwt.StandardClaims
-	Uid         string   `json:"uid"`
-	Nickname    string   `json:"nickname"`
-	Avatar      string   `json:"avatar"`
-	Gender      string   `json:"gender"`
-	Signature   string   `json:"signature"`
-	Permissions []string `json:"permissions"`
+	UserRole  int    `json:"user_role"`
+	Uid       string `json:"uid"`
+	Nickname  string `json:"nickname"`
+	Avatar    string `json:"avatar"`
+	Gender    int    `json:"gender"`
+	Signature string `json:"signature"`
 }
 
 // GenerateToken 生成 token
-func GenerateToken(uid, nickname, avatar, gender, signature string) (tokenStr string, err error) {
+func GenerateToken(base *models.UserBase) (tokenStr string, err error) {
 	var claims JWTClaims
-	claims.Uid = uid
-	claims.Nickname = nickname
-	claims.Avatar = avatar
-	claims.Gender = gender
-	claims.Signature = signature
+	claims.UserRole = base.UserRole
+	claims.Uid = base.Uid
+	claims.Nickname = base.Nickname
+	claims.Avatar = base.Avatar
+	claims.Gender = base.Gender
+	claims.Signature = base.Signature
 	claims.IssuedAt = time.Now().Unix()
 	claims.ExpiresAt = time.Now().Add(time.Second * time.Duration(ExpireTime)).Unix()
 
@@ -58,9 +60,8 @@ func ParseToken(tokenSrt string) (claims *JWTClaims, err error) {
 	}
 	if claim, ok := token.Claims.(*JWTClaims); ok {
 		return claim, nil
-	} else {
-		return &JWTClaims{}, errors.New("Parse errors")
 	}
+	return &JWTClaims{}, errors.New("Parse errors")
 }
 
 // 验证token

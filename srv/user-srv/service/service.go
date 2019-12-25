@@ -2,6 +2,7 @@ package service
 
 import (
 	"errors"
+	"github.com/cnbattle/hello-micro/kernel/jwt"
 	"strings"
 
 	"github.com/cnbattle/hello-micro/kernel/config"
@@ -36,7 +37,12 @@ func MiniProgramLogin(channel, code string) (token string, err error) {
 	if err != nil {
 		return "", err
 	}
-	return userAuth.Certificate, err
+	tokenStr, err := jwt.GenerateToken(&userBase)
+	if err != nil {
+		return "", err
+	}
+
+	return tokenStr, nil
 }
 
 func AuthDetail(uid string) {

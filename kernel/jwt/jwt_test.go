@@ -2,26 +2,48 @@ package jwt
 
 import (
 	"github.com/cnbattle/hello-micro/kernel/utils"
+	"github.com/cnbattle/hello-micro/srv/user-srv/models"
 	"github.com/google/uuid"
-	"log"
+	"math/rand"
 	"testing"
 )
 
-// TestGenerateToken
+// TestGenerateToken 生成方法
 func TestGenerateToken(t *testing.T) {
-	uid := uuid.New().String()
-	nickname := utils.RandString(6)
-	avatar := "https://ruan.co/" + utils.RandString(6)
-	gender := utils.RandString(1)
-	signature := utils.RandString(128)
-	generateToken, err := GenerateToken(uid, nickname, avatar, gender, signature)
-	if err != nil {
-		t.Error(err)
+	type args struct {
+		base *models.UserBase
 	}
-	log.Println(generateToken)
+	type testsStruct struct {
+		name string
+		args args
+	}
+	var tests []testsStruct
+
+	for i := 1; i < 10; i++ {
+		var userBase models.UserBase
+		userBase.Uid = uuid.New().String()
+		userBase.Nickname = utils.RandString(6)
+		userBase.Avatar = "https://ruan.co/" + utils.RandString(6)
+		userBase.Gender = rand.Intn(2)
+		userBase.Signature = utils.RandString(128)
+		tests = append(tests, testsStruct{
+			name: "randData",
+			args: args{&userBase},
+		})
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			_, err := GenerateToken(tt.args.base)
+			if err != nil {
+				t.Errorf("GenerateToken() error = %v", err)
+				return
+			}
+		})
+	}
 }
 
-// TestParseToken 解析验证token
+// TestParseToken 解析token
 func TestParseToken(t *testing.T) {
 	oldToken := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzcyNjM2ODYsImlhdCI6MTU3NzI2MzY3NiwidWlkIjoidWlkIiwibmlja25hbWUiOiJuaWNrbmFtZSIsImF2YXRhciI6ImF2YXRhciIsImdlbmRlciI6ImdlbmRlciIsInNpZ25hdHVyZSI6InNpZ25hdHVyZSIsInBlcm1pc3Npb25zIjpudWxsfQ.jUXsL4WMM2lJKu56DMHpHTwtPGvAixQwfxxlyI9X0bM"
 	_, err := ParseToken(oldToken)
@@ -29,12 +51,13 @@ func TestParseToken(t *testing.T) {
 		t.Error("testing oldToken is not error")
 		return
 	}
-	uid := uuid.New().String()
-	nickname := utils.RandString(6)
-	avatar := "https://ruan.co/" + utils.RandString(6)
-	gender := utils.RandString(1)
-	signature := utils.RandString(128)
-	generateToken, err := GenerateToken(uid, nickname, avatar, gender, signature)
+	var userBase models.UserBase
+	userBase.Uid = uuid.New().String()
+	userBase.Nickname = utils.RandString(6)
+	userBase.Avatar = "https://ruan.co/" + utils.RandString(6)
+	userBase.Gender = rand.Intn(2)
+	userBase.Signature = utils.RandString(128)
+	generateToken, err := GenerateToken(&userBase)
 	if err != nil {
 		t.Error(err)
 	}
@@ -59,17 +82,18 @@ func TestVerifyToken(t *testing.T) {
 		want: false,
 	})
 	for i := 0; i < 10; i++ {
-		uid := uuid.New().String()
-		nickname := utils.RandString(6)
-		avatar := "https://ruan.co/" + utils.RandString(6)
-		gender := utils.RandString(1)
-		signature := utils.RandString(128)
-		generateToken, err := GenerateToken(uid, nickname, avatar, gender, signature)
+		var userBase models.UserBase
+		userBase.Uid = uuid.New().String()
+		userBase.Nickname = utils.RandString(6)
+		userBase.Avatar = "https://ruan.co/" + utils.RandString(6)
+		userBase.Gender = rand.Intn(2)
+		userBase.Signature = utils.RandString(128)
+		generateToken, err := GenerateToken(&userBase)
 		if err != nil {
 			t.Errorf("GenerateToken() error: %v", err)
 		}
 		tests = append(tests, testsStruct{
-			name: "true",
+			name: "randData",
 			args: generateToken,
 			want: true,
 		})
