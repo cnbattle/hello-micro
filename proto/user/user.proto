@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+message AuthRequest {
+    string uid = 1;
+}
+
+
+message LoginRequest{
+    string identityType = 1;
+    string identity = 2;
+    bool autoRegister = 3;
+}
+
+message BaseRequest {
+    string uid = 1;
+}
+
+message AuthResponse {
+    string uid = 1;
+    string identityType = 2;
+    string identity = 3;
+    string certificate = 4;
+}
+
+message BaseResponse {
+    string uid = 1;
+    string nickname = 2;
+    string avatar = 3;
+    string gender = 4;
+    string signature = 5;
+}
+
+service user {
+    rpc Login(LoginRequest) returns(AuthResponse){
+    }
+    rpc AuthDetail(AuthRequest) returns(AuthResponse){
+    }
+    rpc BaseDetail(BaseRequest) returns(BaseResponse){
+    }
+}
+
