@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"github.com/cnbattle/hello-micro/proto/article"
 	"github.com/cnbattle/hello-micro/proto/hello"
+	"github.com/micro/cli"
 	"github.com/micro/go-micro"
 	api "github.com/micro/go-micro/api/proto"
 )
@@ -51,10 +52,11 @@ func main() {
 		micro.Name("go.micro.hello.micro.api.hello"),
 	)
 
-	helloClient = hello.NewHelloService("go.micro.hello.micro.svr.hello", service.Client())
-	articleClient = article.NewArticleService("go.micro.hello.micro.svr.article", service.Client())
-
-	// 暴露接口
+	// 注入
+	service.Init(micro.Action(func(c *cli.Context) {
+		helloClient = hello.NewHelloService("go.micro.hello.micro.svr.hello", service.Client())
+		articleClient = article.NewArticleService("go.micro.hello.micro.svr.article", service.Client())
+	}))
 	// TODO
 
 	if err := service.Run(); err != nil {
