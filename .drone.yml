@@ -1,0 +1,29 @@
+---
+kind: pipeline
+type: docker
+name: testing
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: vet
+    image: golang:latest
+    commands:
+      - go vet -v ./...
+    volumes:
+      - name: gopath
+        path: /go
+
+  - name: test
+    image: golang:latest
+    commands:
+      - go test -v ./...
+    volumes:
+      - name: gopath
+        path: /go
+
+volumes:
+  - name: gopath
+    temp: {}
