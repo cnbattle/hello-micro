@@ -2,9 +2,10 @@ package loginservice
 
 import (
 	"errors"
-	"server/kernel/models"
-	"server/pkg/database"
-	"server/pkg/utils"
+
+	"github.com/cnbattle/hello-micro/pkg/database"
+	"github.com/cnbattle/hello-micro/pkg/utils"
+	"github.com/cnbattle/hello-micro/srv/user-srv/models"
 )
 
 type PasswordLoginService struct {
