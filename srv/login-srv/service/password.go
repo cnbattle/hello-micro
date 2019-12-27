@@ -2,6 +2,7 @@ package loginservice
 
 import (
 	"errors"
+	"github.com/cnbattle/hello-micro/pkg/jwt"
 
 	"github.com/cnbattle/hello-micro/pkg/database"
 	"github.com/cnbattle/hello-micro/pkg/utils"
@@ -27,7 +28,11 @@ func (m *PasswordLoginService) Login() (LoginRequest, error) {
 	var userBase models.UserBase
 	err = database.Conn.Where("uid=?", userAuth.Uid).Find(&userBase).Error
 	if err != nil {
-		return LoginRequest{Uid: userAuth.Uid, Token: userAuth.Certificate}, err
+		return LoginRequest{}, err
 	}
-	return LoginRequest{Uid: userAuth.Uid, Token: userAuth.Certificate, IsAuth: true}, err
+	tokenStr, err := jwt.GenerateToken(&userBase)
+	if err != nil {
+		return LoginRequest{}, err
+	}
+	return LoginRequest{Token: tokenStr}, err
 }

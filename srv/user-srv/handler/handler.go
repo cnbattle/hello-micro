@@ -23,7 +23,7 @@ func (s Handler) PhoneCodeLogin(context.Context, *user.PhoneCodeLoginRequest, *u
 	panic("implement me")
 }
 
-func (s Handler) PhonePasswordLogin(context.Context, *user.PasswordLoginRequest, *user.LoginResponse) error {
+func (s Handler) PasswordLogin(context.Context, *user.PasswordLoginRequest, *user.LoginResponse) error {
 	panic("implement me")
 }
 

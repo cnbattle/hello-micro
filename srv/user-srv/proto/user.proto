@@ -49,7 +49,7 @@ service user {
     rpc PhoneCodeLogin(PhoneCodeLoginRequest) returns(LoginResponse){
     }
     // 密码登录 (手机密码.用户名密码.邮箱密码)
-    rpc PhonePasswordLogin(PasswordLoginRequest) returns(LoginResponse){
+    rpc PasswordLogin(PasswordLoginRequest) returns(LoginResponse){
     }
 
     rpc AuthDetail(DefaultRequest) returns(AuthResponse){

@@ -39,7 +39,7 @@ type UserService interface {
 	// 手机验证码登录
 	PhoneCodeLogin(ctx context.Context, in *PhoneCodeLoginRequest, opts ...client.CallOption) (*LoginResponse, error)
 	// 密码登录 (手机密码.用户名密码.邮箱密码)
-	PhonePasswordLogin(ctx context.Context, in *PasswordLoginRequest, opts ...client.CallOption) (*LoginResponse, error)
+	PasswordLogin(ctx context.Context, in *PasswordLoginRequest, opts ...client.CallOption) (*LoginResponse, error)
 	AuthDetail(ctx context.Context, in *DefaultRequest, opts ...client.CallOption) (*AuthResponse, error)
 	BaseDetail(ctx context.Context, in *DefaultRequest, opts ...client.CallOption) (*BaseResponse, error)
 }
@@ -82,8 +82,8 @@ func (c *userService) PhoneCodeLogin(ctx context.Context, in *PhoneCodeLoginRequ
 	return out, nil
 }
 
-func (c *userService) PhonePasswordLogin(ctx context.Context, in *PasswordLoginRequest, opts ...client.CallOption) (*LoginResponse, error) {
-	req := c.c.NewRequest(c.name, "User.PhonePasswordLogin", in)
+func (c *userService) PasswordLogin(ctx context.Context, in *PasswordLoginRequest, opts ...client.CallOption) (*LoginResponse, error) {
+	req := c.c.NewRequest(c.name, "User.PasswordLogin", in)
 	out := new(LoginResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -120,7 +120,7 @@ type UserHandler interface {
 	// 手机验证码登录
 	PhoneCodeLogin(context.Context, *PhoneCodeLoginRequest, *LoginResponse) error
 	// 密码登录 (手机密码.用户名密码.邮箱密码)
-	PhonePasswordLogin(context.Context, *PasswordLoginRequest, *LoginResponse) error
+	PasswordLogin(context.Context, *PasswordLoginRequest, *LoginResponse) error
 	AuthDetail(context.Context, *DefaultRequest, *AuthResponse) error
 	BaseDetail(context.Context, *DefaultRequest, *BaseResponse) error
 }
@@ -129,7 +129,7 @@ func RegisterUserHandler(s server.Server, hdlr UserHandler, opts ...server.Handl
 	type user interface {
 		MiniProgramLogin(ctx context.Context, in *MiniProgramLoginRequest, out *LoginResponse) error
 		PhoneCodeLogin(ctx context.Context, in *PhoneCodeLoginRequest, out *LoginResponse) error
-		PhonePasswordLogin(ctx context.Context, in *PasswordLoginRequest, out *LoginResponse) error
+		PasswordLogin(ctx context.Context, in *PasswordLoginRequest, out *LoginResponse) error
 		AuthDetail(ctx context.Context, in *DefaultRequest, out *AuthResponse) error
 		BaseDetail(ctx context.Context, in *DefaultRequest, out *BaseResponse) error
 	}
@@ -152,8 +152,8 @@ func (h *userHandler) PhoneCodeLogin(ctx context.Context, in *PhoneCodeLoginRequ
 	return h.UserHandler.PhoneCodeLogin(ctx, in, out)
 }
 
-func (h *userHandler) PhonePasswordLogin(ctx context.Context, in *PasswordLoginRequest, out *LoginResponse) error {
-	return h.UserHandler.PhonePasswordLogin(ctx, in, out)
+func (h *userHandler) PasswordLogin(ctx context.Context, in *PasswordLoginRequest, out *LoginResponse) error {
+	return h.UserHandler.PasswordLogin(ctx, in, out)
 }
 
 func (h *userHandler) AuthDetail(ctx context.Context, in *DefaultRequest, out *AuthResponse) error {

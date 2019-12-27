@@ -1,13 +1,19 @@
 package config
 
 import (
-	"github.com/joho/godotenv"
 	"log"
+	"sync"
+
+	"github.com/joho/godotenv"
 )
 
-func init() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file:", err)
-	}
+var once sync.Once
+
+func Init() {
+	once.Do(func() {
+		err := godotenv.Load()
+		if err != nil {
+			log.Fatal("Error loading .env file:", err)
+		}
+	})
 }

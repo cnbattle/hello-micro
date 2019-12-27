@@ -41,7 +41,7 @@ type LoginService interface {
 	// 邮箱验证码登录
 	EmailCodeLogin(ctx context.Context, in *EmailCodeLoginRequest, opts ...client.CallOption) (*LoginResponse, error)
 	// 密码登录 (手机密码.用户名密码.邮箱密码)
-	PhonePasswordLogin(ctx context.Context, in *PasswordLoginRequest, opts ...client.CallOption) (*LoginResponse, error)
+	PasswordLogin(ctx context.Context, in *PasswordLoginRequest, opts ...client.CallOption) (*LoginResponse, error)
 }
 
 type loginService struct {
@@ -92,8 +92,8 @@ func (c *loginService) EmailCodeLogin(ctx context.Context, in *EmailCodeLoginReq
 	return out, nil
 }
 
-func (c *loginService) PhonePasswordLogin(ctx context.Context, in *PasswordLoginRequest, opts ...client.CallOption) (*LoginResponse, error) {
-	req := c.c.NewRequest(c.name, "Login.PhonePasswordLogin", in)
+func (c *loginService) PasswordLogin(ctx context.Context, in *PasswordLoginRequest, opts ...client.CallOption) (*LoginResponse, error) {
+	req := c.c.NewRequest(c.name, "Login.PasswordLogin", in)
 	out := new(LoginResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -112,7 +112,7 @@ type LoginHandler interface {
 	// 邮箱验证码登录
 	EmailCodeLogin(context.Context, *EmailCodeLoginRequest, *LoginResponse) error
 	// 密码登录 (手机密码.用户名密码.邮箱密码)
-	PhonePasswordLogin(context.Context, *PasswordLoginRequest, *LoginResponse) error
+	PasswordLogin(context.Context, *PasswordLoginRequest, *LoginResponse) error
 }
 
 func RegisterLoginHandler(s server.Server, hdlr LoginHandler, opts ...server.HandlerOption) error {
@@ -120,7 +120,7 @@ func RegisterLoginHandler(s server.Server, hdlr LoginHandler, opts ...server.Han
 		MiniProgramLogin(ctx context.Context, in *MiniProgramLoginRequest, out *LoginResponse) error
 		PhoneCodeLogin(ctx context.Context, in *PhoneCodeLoginRequest, out *LoginResponse) error
 		EmailCodeLogin(ctx context.Context, in *EmailCodeLoginRequest, out *LoginResponse) error
-		PhonePasswordLogin(ctx context.Context, in *PasswordLoginRequest, out *LoginResponse) error
+		PasswordLogin(ctx context.Context, in *PasswordLoginRequest, out *LoginResponse) error
 	}
 	type Login struct {
 		login
@@ -145,6 +145,6 @@ func (h *loginHandler) EmailCodeLogin(ctx context.Context, in *EmailCodeLoginReq
 	return h.LoginHandler.EmailCodeLogin(ctx, in, out)
 }
 
-func (h *loginHandler) PhonePasswordLogin(ctx context.Context, in *PasswordLoginRequest, out *LoginResponse) error {
-	return h.LoginHandler.PhonePasswordLogin(ctx, in, out)
+func (h *loginHandler) PasswordLogin(ctx context.Context, in *PasswordLoginRequest, out *LoginResponse) error {
+	return h.LoginHandler.PasswordLogin(ctx, in, out)
 }

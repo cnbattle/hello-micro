@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/cnbattle/hello-micro/srv/login-srv/handler"
 	"log"
 
 	proto "github.com/cnbattle/hello-micro/proto/login"
@@ -18,7 +19,7 @@ func main() {
 
 	service.Init()
 
-	err := proto.RegisterLoginHandler(service.Server(), new(handler))
+	err := proto.RegisterLoginHandler(service.Server(), new(handler.Handler))
 	if err != nil {
 		log.Fatalf("micro %v, error:%v", microName, err)
 	}
