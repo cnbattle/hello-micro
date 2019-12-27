@@ -94,7 +94,6 @@ volumes:
 depends_on:
   - testing
 
-
 ---
 kind: pipeline
 type: docker
@@ -117,6 +116,39 @@ steps:
     image: golang:latest
     commands:
       - ./user-srv --help
+    volumes:
+      - name: gopath
+        path: /go
+
+volumes:
+  - name: gopath
+    temp: {}
+
+depends_on:
+  - testing
+
+---
+kind: pipeline
+type: docker
+name: article-srv
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: build
+    image: golang:latest
+    commands:
+      - go build -v -o article-srv srv/article-srv/main.go
+    volumes:
+      - name: gopath
+        path: /go
+
+  - name: run
+    image: golang:latest
+    commands:
+      - ./article-srv --help
     volumes:
       - name: gopath
         path: /go
@@ -156,3 +188,4 @@ depends_on:
   - hello-srv
   - login-srv
   - user-srv
+  - article-srv
