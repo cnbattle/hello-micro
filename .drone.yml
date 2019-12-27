@@ -41,7 +41,7 @@ steps:
   - name: build
     image: golang:latest
     commands:
-      - go build -v -o login-srv srv\login-srv\main.go
+      - go build -v -o login-srv srv/login-srv/main.go
     volumes:
       - name: gopath
         path: /go
@@ -57,3 +57,6 @@ steps:
 volumes:
   - name: gopath
     temp: {}
+
+depends_on:
+  - testing
