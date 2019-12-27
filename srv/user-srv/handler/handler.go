@@ -2,8 +2,6 @@ package handler
 
 import (
 	"context"
-	"github.com/cnbattle/hello-micro/srv/user-srv/service"
-
 	user "github.com/cnbattle/hello-micro/srv/user-srv/proto"
 )
 
@@ -11,11 +9,7 @@ type Handler struct{}
 
 // MiniProgramLogin 小程序登录
 func (s Handler) MiniProgramLogin(ctx context.Context, req *user.MiniProgramLoginRequest, rsp *user.LoginResponse) error {
-	token, err := service.MiniProgramLogin(req.Channel, req.Code)
-	if err != nil {
-		return err
-	}
-	rsp.Token = token
+
 	return nil
 }
 
