@@ -17,8 +17,8 @@ type User struct {
 }
 
 var (
-	Secret     = "test_secret" // 加盐
-	ExpireTime = 3600          // token有效期
+	Secret     = "cnbattle" // 加盐
+	ExpireTime = 3600       // token有效期
 )
 
 type JWTClaims struct { // token里面添加用户信息，验证token后可能会用到用户信息
