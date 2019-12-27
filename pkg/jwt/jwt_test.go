@@ -1,7 +1,7 @@
 package jwt
 
 import (
-	"github.com/cnbattle/hello-micro/kernel/utils"
+	"github.com/cnbattle/hello-micro/pkg/utils"
 	"github.com/cnbattle/hello-micro/srv/user-srv/models"
 	"github.com/google/uuid"
 	"math/rand"

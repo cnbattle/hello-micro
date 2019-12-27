@@ -2,10 +2,10 @@ package service
 
 import (
 	"errors"
-	"github.com/cnbattle/hello-micro/kernel/jwt"
+	"github.com/cnbattle/hello-micro/pkg/jwt"
 	"strings"
 
-	"github.com/cnbattle/hello-micro/kernel/config"
+	"github.com/cnbattle/hello-micro/pkg/config"
 	"github.com/cnbattle/hello-micro/srv/user-srv/database"
 	"github.com/cnbattle/hello-micro/srv/user-srv/models"
 	"github.com/google/uuid"

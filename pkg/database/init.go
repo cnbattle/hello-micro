@@ -2,7 +2,7 @@ package database
 
 import (
 	"fmt"
-	"github.com/cnbattle/hello-micro/kernel/config"
+	"github.com/cnbattle/hello-micro/pkg/config"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"log"
