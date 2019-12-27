@@ -28,7 +28,6 @@ volumes:
   - name: gopath
     temp: {}
 
-
 ---
 kind: pipeline
 type: docker
@@ -42,7 +41,7 @@ steps:
   - name: build
     image: golang:latest
     commands:
-      - go build srv\login-srv\main.go -v -o login-srv
+      - go build -v -o login-srv srv\login-srv\main.go
     volumes:
       - name: gopath
         path: /go
