@@ -49,7 +49,7 @@ steps:
   - name: run
     image: golang:latest
     commands:
-      - login-srv --help
+      - ./login-srv --help
     volumes:
       - name: gopath
         path: /go
