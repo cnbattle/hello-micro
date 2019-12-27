@@ -27,3 +27,34 @@ steps:
 volumes:
   - name: gopath
     temp: {}
+
+
+---
+kind: pipeline
+type: docker
+name: login-srv
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: build
+    image: golang:latest
+    commands:
+      - go build srv\login-srv\main.go -v -o login-srv
+    volumes:
+      - name: gopath
+        path: /go
+
+  - name: run
+    image: golang:latest
+    commands:
+      - login-srv --help
+    volumes:
+      - name: gopath
+        path: /go
+
+volumes:
+  - name: gopath
+    temp: {}
