@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+message MiniProgramLoginRequest{
+    string channel = 1;
+    string code = 2;
+}
+
+message PhoneCodeLoginRequest{
+    string phone = 1;
+    string code = 2;
+}
+
+message EmailCodeLoginRequest{
+    string email = 1;
+    string code = 2;
+}
+
+message PasswordLoginRequest{
+    string channel = 1;
+    string loginName = 2;
+    string password = 3;
+}
+
+message LoginResponse {
+    string token = 1;
+}
+
+message DefaultRequest {
+    string uid = 1;
+}
+
+message AuthResponse {
+    string uid = 1;
+    string identityType = 2;
+    string identity = 3;
+    string certificate = 4;
+}
+
+message BaseResponse {
+    string uid = 1;
+    string nickname = 2;
+    string avatar = 3;
+    string gender = 4;
+    string signature = 5;
+}
+
+service user {
+    // 小程序登录
+    rpc MiniProgramLogin(MiniProgramLoginRequest) returns(LoginResponse){
+    }
+    // 手机验证码登录
+    rpc PhoneCodeLogin(PhoneCodeLoginRequest) returns(LoginResponse){
+    }
+    // 邮箱验证码登录
+    rpc EmailCodeLogin(EmailCodeLoginRequest) returns(LoginResponse){
+    }
+    // 密码登录 (手机密码.用户名密码.邮箱密码)
+    rpc PhonePasswordLogin(PasswordLoginRequest) returns(LoginResponse){
+    }
+
+    rpc AuthDetail(DefaultRequest) returns(AuthResponse){
+    }
+    rpc BaseDetail(DefaultRequest) returns(BaseResponse){
+    }
+}
+
