@@ -138,7 +138,7 @@ platform:
   arch: amd64
 
 steps:
-  - name: send telegram notification
+  - name: telegram notification
     image: appleboy/drone-telegram
     settings:
       token:
