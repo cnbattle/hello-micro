@@ -1,4 +1,4 @@
-package loginservice
+package service
 
 // LoginInterface interface
 type LoginInterface interface {

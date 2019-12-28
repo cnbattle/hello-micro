@@ -83,7 +83,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: login-srv
+name: auth-srv
 
 platform:
   os: linux
@@ -93,7 +93,7 @@ steps:
   - name: build
     image: golang:latest
     commands:
-      - go build -v -o login-srv -ldflags "-s -w" srv/login-srv/main.go
+      - go build -v -o auth-srv -ldflags "-s -w" srv/auth-srv/main.go
     volumes:
       - name: gopath
         path: /go
@@ -102,8 +102,8 @@ steps:
     image: cnbattle/drone-upx
     settings:
       level: 9
-      save_file: ./login-srv-upx
-      original_file: ./login-srv
+      save_file: ./auth-srv-upx
+      original_file: ./auth-srv
     volumes:
       - name: gopath
         path: /go
@@ -112,7 +112,7 @@ steps:
   - name: run
     image: golang:latest
     commands:
-      - ./login-srv-upx --help
+      - ./auth-srv-upx --help
     volumes:
       - name: gopath
         path: /go
@@ -235,6 +235,6 @@ trigger:
 
 depends_on:
   - hello-srv
-  - login-srv
+  - auth-srv
   - user-srv
   - article-srv

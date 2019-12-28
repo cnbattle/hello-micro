@@ -25,7 +25,26 @@ message LoginResponse {
     string token = 1;
 }
 
-service login {
+message VerifyTokenRequest{
+    string token = 1;
+}
+
+message VerifyTokenResponse{
+    bool valid = 1;
+}
+
+message RefreshTokenRequest{
+    string token = 1;
+}
+
+message RefreshTokenResponse{
+    // valid 原token是否有效
+    bool valid = 1;
+    // token new token
+    string token = 2;
+}
+
+service auth {
     // 小程序登录
     rpc MiniProgramLogin(MiniProgramLoginRequest) returns(LoginResponse){
     }
@@ -37,6 +56,13 @@ service login {
     }
     // 密码登录 (手机密码.用户名密码.邮箱密码)
     rpc PasswordLogin(PasswordLoginRequest) returns(LoginResponse){
+    }
+
+    // 验证token是否有效
+    rpc VerifyToken(VerifyTokenRequest) returns(VerifyTokenResponse){
+    }
+    // 刷新token
+    rpc RefreshToken(RefreshTokenRequest) returns(RefreshTokenResponse){
     }
 }
 
