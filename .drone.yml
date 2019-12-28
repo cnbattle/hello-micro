@@ -33,6 +33,16 @@ steps:
       - name: gopath
         path: /go
 
+  - name: notification
+    image: appleboy/drone-telegram
+    settings:
+      token:
+        from_secret: telegram_token
+      to:
+        from_secret: telegram_user_id
+    when:
+      status: [ failure ]
+
 volumes:
   - name: gopath
     temp: {}
@@ -73,6 +83,16 @@ steps:
       - name: gopath
         path: /go
 
+  - name: notification
+    image: appleboy/drone-telegram
+    settings:
+      token:
+        from_secret: telegram_token
+      to:
+        from_secret: telegram_user_id
+    when:
+      status: [ failure ]
+
 volumes:
   - name: gopath
     temp: {}
@@ -108,7 +128,6 @@ steps:
       - name: gopath
         path: /go
 
-
   - name: run
     image: golang:latest
     commands:
@@ -116,6 +135,16 @@ steps:
     volumes:
       - name: gopath
         path: /go
+
+  - name: notification
+    image: appleboy/drone-telegram
+    settings:
+      token:
+        from_secret: telegram_token
+      to:
+        from_secret: telegram_user_id
+    when:
+      status: [ failure ]
 
 volumes:
   - name: gopath
@@ -160,6 +189,16 @@ steps:
       - name: gopath
         path: /go
 
+  - name: notification
+    image: appleboy/drone-telegram
+    settings:
+      token:
+        from_secret: telegram_token
+      to:
+        from_secret: telegram_user_id
+    when:
+      status: [ failure ]
+
 volumes:
   - name: gopath
     temp: {}
@@ -202,6 +241,16 @@ steps:
     volumes:
       - name: gopath
         path: /go
+
+  - name: notification
+    image: appleboy/drone-telegram
+    settings:
+      token:
+        from_secret: telegram_token
+      to:
+        from_secret: telegram_user_id
+    when:
+      status: [ failure ]
 
 volumes:
   - name: gopath
