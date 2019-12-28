@@ -234,7 +234,6 @@ trigger:
     - refs/tags/**
 
 depends_on:
-  - testing
   - hello-srv
   - login-srv
   - user-srv
