@@ -33,7 +33,7 @@ steps:
       - name: gopath
         path: /go
 
-  - name: notification
+  - name: failure notification
     image: appleboy/drone-telegram
     settings:
       token:
@@ -83,7 +83,7 @@ steps:
       - name: gopath
         path: /go
 
-  - name: notification
+  - name: failure notification
     image: appleboy/drone-telegram
     settings:
       token:
@@ -136,7 +136,7 @@ steps:
       - name: gopath
         path: /go
 
-  - name: notification
+  - name: failure notification
     image: appleboy/drone-telegram
     settings:
       token:
@@ -189,7 +189,7 @@ steps:
       - name: gopath
         path: /go
 
-  - name: notification
+  - name: failure notification
     image: appleboy/drone-telegram
     settings:
       token:
@@ -242,7 +242,7 @@ steps:
       - name: gopath
         path: /go
 
-  - name: notification
+  - name: failure notification
     image: appleboy/drone-telegram
     settings:
       token:
