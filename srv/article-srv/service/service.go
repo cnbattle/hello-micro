@@ -2,6 +2,7 @@ package service
 
 import "github.com/cnbattle/hello-micro/proto/article"
 
+// Detail article Detail
 func Detail(articleID string) (rsp article.Response) {
 	// ... real code
 	rsp.Id = articleID

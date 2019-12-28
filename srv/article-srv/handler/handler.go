@@ -7,8 +7,10 @@ import (
 	"github.com/cnbattle/hello-micro/srv/article-srv/service"
 )
 
+// Handler struct
 type Handler struct{}
 
+// Detail detail
 func (s Handler) Detail(ctx context.Context, req *article.Request, rsp *article.Response) error {
 	detail := service.Detail(req.Id)
 	rsp.Id = detail.Id

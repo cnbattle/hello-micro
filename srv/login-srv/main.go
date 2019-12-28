@@ -9,6 +9,7 @@ import (
 )
 
 var (
+	// microName
 	microName = "hello.micro.svr.user.login"
 )
 

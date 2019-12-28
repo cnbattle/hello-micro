@@ -9,12 +9,14 @@ import (
 	"github.com/cnbattle/hello-micro/srv/user-srv/models"
 )
 
+// PasswordLoginService PasswordLoginService
 type PasswordLoginService struct {
 	Username   string
 	Password   string
 	AutoCreate bool
 }
 
+// Login Login
 func (m *PasswordLoginService) Login() (LoginRequest, error) {
 	if m.Password == "" || m.Username == "" {
 		return LoginRequest{}, errors.New("code is empty")

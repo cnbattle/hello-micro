@@ -11,13 +11,17 @@ import (
 )
 
 var (
-	helloClient   hello.HelloService
+	// HelloService
+	helloClient hello.HelloService
+	// ArticleService
 	articleClient article.ArticleService
 )
 
+// Open struct
 type Open struct {
 }
 
+// Fetch Fetch
 func (open Open) Fetch(ctx context.Context, req *api.Request, rsq *api.Response) error {
 	name := req.Get["name"].Values[0]
 	articleID := req.Get["articleID"].Values[0]

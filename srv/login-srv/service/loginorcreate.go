@@ -9,7 +9,7 @@ import (
 	"github.com/silenceper/wechat/util"
 )
 
-// LoginOrCreate
+// LoginOrCreate loginOrCreate
 func loginOrCreate(identityType, identity string, autoCreate bool) (*models.UserAuth, error) {
 	userAuth := models.UserAuth{}
 	err := database.Conn.Where("identity_type=?", identityType).

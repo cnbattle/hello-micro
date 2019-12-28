@@ -8,6 +8,7 @@ import (
 	"github.com/cnbattle/hello-micro/proto/login"
 )
 
+// Handler struct
 type Handler struct {
 }
 
@@ -26,10 +27,12 @@ func (h Handler) MiniProgramLogin(ctx context.Context, req *login.MiniProgramLog
 	return nil
 }
 
+// PhoneCodeLogin 手机登录
 func (h Handler) PhoneCodeLogin(context.Context, *login.PhoneCodeLoginRequest, *login.LoginResponse) error {
 	return errors.New("暂不支持")
 }
 
+// EmailCodeLogin 邮箱登录
 func (h Handler) EmailCodeLogin(context.Context, *login.EmailCodeLoginRequest, *login.LoginResponse) error {
 	return errors.New("暂不支持")
 }

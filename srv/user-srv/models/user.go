@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+// UserAuth UserAuth
 type UserAuth struct {
 	gorm.Model
 	UID          string `gorm:"type:char(36);not null;unique_index"` // 用户ID
@@ -13,6 +14,7 @@ type UserAuth struct {
 	Certificate  string `gorm:"type:char(32);not null"`              // 凭证
 }
 
+// UserBase UserBase
 type UserBase struct {
 	UID       string `gorm:"type:char(36);not null;unique_index"` // 用户ID
 	UserRole  int    `gorm:"type:tinyint(2);not null"`            // 用户角色ID

@@ -44,7 +44,7 @@ func main() {
 	}
 }
 
-// 日志Wrapper
+// regLogger 日志Wrapper
 func regLogger(cli client.Client) server.HandlerWrapper {
 	// 初始化操作
 	return func(handlerFunc server.HandlerFunc) server.HandlerFunc {

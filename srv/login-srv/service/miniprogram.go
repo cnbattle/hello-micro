@@ -11,12 +11,14 @@ import (
 	"github.com/silenceper/wechat"
 )
 
+// MiniProgramLoginService MiniProgramLoginService
 type MiniProgramLoginService struct {
 	Channel    string
 	Code       string
 	AutoCreate bool
 }
 
+// Login Login
 func (m *MiniProgramLoginService) Login() (LoginRequest, error) {
 	if m.Code == "" {
 		return LoginRequest{}, errors.New("code is empty")

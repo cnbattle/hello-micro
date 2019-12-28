@@ -9,6 +9,7 @@ import (
 
 var once sync.Once
 
+// Init config init
 func Init() {
 	once.Do(func() {
 		err := godotenv.Load()

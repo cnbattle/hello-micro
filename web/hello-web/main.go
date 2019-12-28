@@ -8,7 +8,7 @@ import (
 )
 
 var (
-	// 声明服务
+	// srvClient 声明服务
 	srvClient hello.HelloService
 )
 
@@ -28,6 +28,7 @@ func main() {
 	}
 }
 
+// Hi Hi
 func Hi(w http.ResponseWriter, r *http.Request) {
 	name := r.URL.Query().Get("name")
 	req := &hello.Request{

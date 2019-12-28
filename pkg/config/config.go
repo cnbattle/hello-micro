@@ -2,12 +2,12 @@ package config
 
 import "os"
 
-// GetEnv
+// GetEnv GetEnv
 func GetEnv(key string) (value string) {
 	return os.Getenv(key)
 }
 
-// GetDefaultEnv
+// GetDefaultEnv GetDefaultEnv
 func GetDefaultEnv(key, defaultValue string) (value string) {
 	value = os.Getenv(key)
 	if value == "" {

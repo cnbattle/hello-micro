@@ -8,9 +8,11 @@ import (
 	"github.com/micro/go-micro/util/log"
 )
 
+// Sub struct
 type Sub struct {
 }
 
+// Process 处理日志
 func (s Sub) Process(ctx context.Context, evt *logProto.LogEvt) error {
 	// 业务逻辑
 	log.Logf("[sub] 收到日志: %v", evt.Msg)

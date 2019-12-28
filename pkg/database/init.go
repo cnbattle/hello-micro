@@ -8,14 +8,18 @@ import (
 
 	"github.com/cnbattle/hello-micro/pkg/config"
 	"github.com/jinzhu/gorm"
+	// import mysql
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 var (
+	// Conn gorm.DB
 	Conn *gorm.DB
+	// once sync.Once
 	once sync.Once
 )
 
+// Init init db
 func Init() {
 	once.Do(func() {
 		var err error
