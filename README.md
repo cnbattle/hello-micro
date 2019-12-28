@@ -1,6 +1,9 @@
 ## 介绍 
 
 [![Build Status](https://cloud.drone.io/api/badges/cnbattle/hello-micro/status.svg)](https://cloud.drone.io/cnbattle/hello-micro)
+[![LINK](https://img.shields.io/badge/link-Github-%23FF4D5B.svg?style=flat-square)](https://github.com/cnbattle/hello-micro) 
+[![Go Report Card](https://goreportcard.com/badge/github.com/cnbattle/hello-micro)](https://goreportcard.com/report/github.com/cnbattle/hello-micro)
+[![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg?style=flat-square)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
 
 > go-micro 相关
 
