@@ -46,10 +46,20 @@ steps:
       - name: gopath
         path: /go
 
+  - name : upx
+    image: cnbattle/drone-upx
+    settings:
+      level: 9
+      save_file: ./hello-srv-upx
+      original_file: ./hello-srv
+    volumes:
+      - name: gopath
+        path: /go
+
   - name: run
     image: golang:latest
     commands:
-      - ./hello-srv --help
+      - ./hello-srv-upx --help
     volumes:
       - name: gopath
         path: /go
@@ -79,10 +89,21 @@ steps:
       - name: gopath
         path: /go
 
+  - name : upx
+    image: cnbattle/drone-upx
+    settings:
+      level: 9
+      save_file: ./login-srv-upx
+      original_file: ./login-srv
+    volumes:
+      - name: gopath
+        path: /go
+
+
   - name: run
     image: golang:latest
     commands:
-      - ./login-srv --help
+      - ./login-srv-upx --help
     volumes:
       - name: gopath
         path: /go
@@ -116,7 +137,7 @@ steps:
     image: cnbattle/drone-upx
     settings:
       level: 9
-      save_file: ./user-srv_upx
+      save_file: ./user-srv-upx
       original_file: ./user-srv
     volumes:
       - name: gopath
@@ -125,7 +146,7 @@ steps:
   - name: run
     image: golang:latest
     commands:
-      - ./user-srv_upx --help
+      - ./user-srv-upx --help
     volumes:
       - name: gopath
         path: /go
@@ -155,10 +176,20 @@ steps:
       - name: gopath
         path: /go
 
+  - name : upx
+    image: cnbattle/drone-upx
+    settings:
+      level: 9
+      save_file: ./article-srv-upx
+      original_file: ./article-srv
+    volumes:
+      - name: gopath
+        path: /go
+
   - name: run
     image: golang:latest
     commands:
-      - ./article-srv --help
+      - ./article-srv-upx --help
     volumes:
       - name: gopath
         path: /go
