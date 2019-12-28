@@ -18,7 +18,7 @@ func loginOrCreate(identityType, identity string, autoCreate bool) (*models.User
 		if autoCreate {
 			userAuth.IdentityType = identityType
 			userAuth.Identity = identity
-			userAuth.Uid = uuid.New().String()
+			userAuth.UID = uuid.New().String()
 			database.Conn.Create(&userAuth)
 		} else {
 			return &models.UserAuth{}, errors.New("not has user auth data")

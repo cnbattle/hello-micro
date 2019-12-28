@@ -6,6 +6,6 @@ type LoginInterface interface {
 
 type LoginRequest struct {
 	Token string
-	//Uid    string
+	//UID    string
 	//IsAuth bool
 }

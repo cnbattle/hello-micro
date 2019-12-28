@@ -16,6 +16,15 @@ steps:
       - name: gopath
         path: /go
 
+  - name: lint
+    image: golang:latest
+    commands:
+      - go get -u github.com/mgechev/revive
+      - revive -config .revive.toml ./... || exit 1
+    volumes:
+      - name: gopath
+        path: /go
+
   - name: test
     image: golang:latest
     commands:

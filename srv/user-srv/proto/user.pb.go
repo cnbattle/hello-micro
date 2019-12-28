@@ -217,7 +217,7 @@ func (m *LoginResponse) GetToken() string {
 }
 
 type DefaultRequest struct {
-	Uid                  string   `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	UID                  string   `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -248,15 +248,15 @@ func (m *DefaultRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_DefaultRequest proto.InternalMessageInfo
 
-func (m *DefaultRequest) GetUid() string {
+func (m *DefaultRequest) GetUID() string {
 	if m != nil {
-		return m.Uid
+		return m.UID
 	}
 	return ""
 }
 
 type AuthResponse struct {
-	Uid                  string   `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	UID                  string   `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
 	IdentityType         string   `protobuf:"bytes,2,opt,name=identityType,proto3" json:"identityType,omitempty"`
 	Identity             string   `protobuf:"bytes,3,opt,name=identity,proto3" json:"identity,omitempty"`
 	Certificate          string   `protobuf:"bytes,4,opt,name=certificate,proto3" json:"certificate,omitempty"`
@@ -290,9 +290,9 @@ func (m *AuthResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_AuthResponse proto.InternalMessageInfo
 
-func (m *AuthResponse) GetUid() string {
+func (m *AuthResponse) GetUID() string {
 	if m != nil {
-		return m.Uid
+		return m.UID
 	}
 	return ""
 }
@@ -319,7 +319,7 @@ func (m *AuthResponse) GetCertificate() string {
 }
 
 type BaseResponse struct {
-	Uid                  string   `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	UID                  string   `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
 	Nickname             string   `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"`
 	Avatar               string   `protobuf:"bytes,3,opt,name=avatar,proto3" json:"avatar,omitempty"`
 	Gender               string   `protobuf:"bytes,4,opt,name=gender,proto3" json:"gender,omitempty"`
@@ -354,9 +354,9 @@ func (m *BaseResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_BaseResponse proto.InternalMessageInfo
 
-func (m *BaseResponse) GetUid() string {
+func (m *BaseResponse) GetUID() string {
 	if m != nil {
-		return m.Uid
+		return m.UID
 	}
 	return ""
 }

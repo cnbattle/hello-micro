@@ -20,7 +20,7 @@ type Open struct {
 
 func (open Open) Fetch(ctx context.Context, req *api.Request, rsq *api.Response) error {
 	name := req.Get["name"].Values[0]
-	articleId := req.Get["articleId"].Values[0]
+	articleID := req.Get["articleID"].Values[0]
 
 	// 调用客户端
 	helloRsp, err := helloClient.Hi(ctx, &hello.Request{
@@ -30,7 +30,7 @@ func (open Open) Fetch(ctx context.Context, req *api.Request, rsq *api.Response)
 		return err
 	}
 	articleRsp, err := articleClient.Detail(ctx, &article.Request{
-		Id: articleId,
+		Id: articleID,
 	})
 	if err != nil {
 		return err

@@ -26,7 +26,7 @@ func (m *PasswordLoginService) Login() (LoginRequest, error) {
 	}
 	// 判断是否有基础用户信息
 	var userBase models.UserBase
-	err = database.Conn.Where("uid=?", userAuth.Uid).Find(&userBase).Error
+	err = database.Conn.Where("uid=?", userAuth.UID).Find(&userBase).Error
 	if err != nil {
 		return LoginRequest{}, err
 	}

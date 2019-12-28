@@ -21,7 +21,7 @@ func TestGenerateToken(t *testing.T) {
 
 	for i := 1; i < 10; i++ {
 		var userBase models.UserBase
-		userBase.Uid = uuid.New().String()
+		userBase.UID = uuid.New().String()
 		userBase.Nickname = utils.RandString(6)
 		userBase.Avatar = "https://ruan.co/" + utils.RandString(6)
 		userBase.Gender = rand.Intn(2)
@@ -52,7 +52,7 @@ func TestParseToken(t *testing.T) {
 		return
 	}
 	var userBase models.UserBase
-	userBase.Uid = uuid.New().String()
+	userBase.UID = uuid.New().String()
 	userBase.Nickname = utils.RandString(6)
 	userBase.Avatar = "https://ruan.co/" + utils.RandString(6)
 	userBase.Gender = rand.Intn(2)
@@ -83,7 +83,7 @@ func TestVerifyToken(t *testing.T) {
 	})
 	for i := 0; i < 10; i++ {
 		var userBase models.UserBase
-		userBase.Uid = uuid.New().String()
+		userBase.UID = uuid.New().String()
 		userBase.Nickname = utils.RandString(6)
 		userBase.Avatar = "https://ruan.co/" + utils.RandString(6)
 		userBase.Gender = rand.Intn(2)

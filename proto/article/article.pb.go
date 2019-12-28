@@ -61,7 +61,7 @@ func (m *Request) GetId() string {
 
 type Response struct {
 	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Uid                  string   `protobuf:"bytes,2,opt,name=uid,proto3" json:"uid,omitempty"`
+	UID                  string   `protobuf:"bytes,2,opt,name=uid,proto3" json:"uid,omitempty"`
 	Title                string   `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
 	Content              string   `protobuf:"bytes,4,opt,name=content,proto3" json:"content,omitempty"`
 	ViewNum              int64    `protobuf:"varint,5,opt,name=view_num,json=viewNum,proto3" json:"view_num,omitempty"`
@@ -102,9 +102,9 @@ func (m *Response) GetId() string {
 	return ""
 }
 
-func (m *Response) GetUid() string {
+func (m *Response) GetUID() string {
 	if m != nil {
-		return m.Uid
+		return m.UID
 	}
 	return ""
 }

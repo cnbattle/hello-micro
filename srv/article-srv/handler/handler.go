@@ -12,7 +12,7 @@ type Handler struct{}
 func (s Handler) Detail(ctx context.Context, req *article.Request, rsp *article.Response) error {
 	detail := service.Detail(req.Id)
 	rsp.Id = detail.Id
-	rsp.Uid = detail.Uid
+	rsp.UID = detail.UID
 	rsp.Title = detail.Title
 	rsp.Content = detail.Content
 	rsp.ViewNum = detail.ViewNum

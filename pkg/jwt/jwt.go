@@ -24,7 +24,7 @@ var (
 type JWTClaims struct { // token里面添加用户信息，验证token后可能会用到用户信息
 	jwt.StandardClaims
 	UserRole  int    `json:"user_role"`
-	Uid       string `json:"uid"`
+	UID       string `json:"uid"`
 	Nickname  string `json:"nickname"`
 	Avatar    string `json:"avatar"`
 	Gender    int    `json:"gender"`
@@ -35,7 +35,7 @@ type JWTClaims struct { // token里面添加用户信息，验证token后可能�
 func GenerateToken(base *models.UserBase) (tokenStr string, err error) {
 	var claims JWTClaims
 	claims.UserRole = base.UserRole
-	claims.Uid = base.Uid
+	claims.UID = base.UID
 	claims.Nickname = base.Nickname
 	claims.Avatar = base.Avatar
 	claims.Gender = base.Gender
