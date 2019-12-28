@@ -41,7 +41,7 @@ steps:
   - name: build
     image: golang:latest
     commands:
-      - go build -v -o hello-srv srv/hello-srv/main.go
+      - go build -v -o hello-srv -ldflags "-s -w" srv/hello-srv/main.go
     volumes:
       - name: gopath
         path: /go
@@ -74,7 +74,7 @@ steps:
   - name: build
     image: golang:latest
     commands:
-      - go build -v -o login-srv srv/login-srv/main.go
+      - go build -v -o login-srv -ldflags "-s -w" srv/login-srv/main.go
     volumes:
       - name: gopath
         path: /go
@@ -107,7 +107,7 @@ steps:
   - name: build
     image: golang:latest
     commands:
-      - go build -v -o user-srv srv/user-srv/main.go
+      - go build -v -o user-srv -ldflags "-s -w" srv/user-srv/main.go
     volumes:
       - name: gopath
         path: /go
@@ -140,7 +140,7 @@ steps:
   - name: build
     image: golang:latest
     commands:
-      - go build -v -o article-srv srv/article-srv/main.go
+      - go build -v -o article-srv -ldflags "-s -w" srv/article-srv/main.go
     volumes:
       - name: gopath
         path: /go
