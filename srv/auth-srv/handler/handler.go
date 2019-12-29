@@ -13,15 +13,19 @@ type Handler struct {
 }
 
 // VerifyToken 验证token
-func (h Handler) VerifyToken(context.Context, *auth.VerifyTokenRequest, *auth.VerifyTokenResponse) error {
-	//panic("implement me")
-	return errors.New("开发中")
+func (h Handler) VerifyToken(ctx context.Context, req *auth.VerifyTokenRequest, rsp *auth.VerifyTokenResponse) error {
+	rsp.Valid = service.VerifyToken(req.Token)
+	return nil
 }
 
 // RefreshToken 刷新token
-func (h Handler) RefreshToken(context.Context, *auth.RefreshTokenRequest, *auth.RefreshTokenResponse) error {
-	//panic("implement me")
-	return errors.New("开发中")
+func (h Handler) RefreshToken(ctx context.Context, req *auth.RefreshTokenRequest, rsp *auth.RefreshTokenResponse) error {
+	token, err := service.RefreshToken(req.Token)
+	if err != nil {
+		return err
+	}
+	rsp.Token = token
+	return nil
 }
 
 // MiniProgramLogin 小程序登录
