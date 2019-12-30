@@ -10,7 +10,7 @@ import (
 
 var (
 	// microName
-	microName = "hello.micro.svr.user.login"
+	microName = "hello.micro.svr.user.auth"
 )
 
 func main() {
