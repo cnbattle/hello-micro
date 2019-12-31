@@ -19,7 +19,7 @@ import (
 
 func main() {
 	service := micro.NewService(
-		micro.Name("go.micro.hello.micro.svr.hello"),
+		micro.Name("com.cnbattle.hello.micro.svr.hello"),
 	)
 
 	service.Init(
@@ -51,7 +51,7 @@ func regLogger(cli client.Client) server.HandlerWrapper {
 		// 中间操作
 		return func(ctx context.Context, req server.Request, rsp interface{}) error {
 			// log-srv
-			pub := micro.NewPublisher("go.micro.hello.micro.topic.log", cli)
+			pub := micro.NewPublisher("com.cnbattle.hello.micro.topic.log", cli)
 			_ = pub.Publish(ctx, &logProto.LogEvt{
 				Msg: "Hello Friends",
 			})
@@ -63,7 +63,7 @@ func regLogger(cli client.Client) server.HandlerWrapper {
 				Message:   fmt.Sprintf("如果你看到了消息 %s, '那是因为我一直爱着你", "hello"),
 			}
 			body, _ := json.Marshal(event)
-			_ = broker.Publish("go.micro.hello.micro.topic.event", &broker.Message{
+			_ = broker.Publish("com.cnbattle.hello.micro.topic.event", &broker.Message{
 				Header: map[string]string{
 					"serviceName": "hello-srv",
 				},

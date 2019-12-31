@@ -53,13 +53,13 @@ func (open Open) Fetch(ctx context.Context, req *api.Request, rsq *api.Response)
 
 func main() {
 	service := micro.NewService(
-		micro.Name("go.micro.hello.micro.api.hello"),
+		micro.Name("com.cnbattle.hello.micro.api.hello"),
 	)
 
 	// 注入
 	service.Init(micro.Action(func(c *cli.Context) {
-		helloClient = hello.NewHelloService("go.micro.hello.micro.svr.hello", service.Client())
-		articleClient = article.NewArticleService("go.micro.hello.micro.svr.article", service.Client())
+		helloClient = hello.NewHelloService("com.cnbattle.hello.micro.svr.hello", service.Client())
+		articleClient = article.NewArticleService("com.cnbattle.hello.micro.svr.article", service.Client())
 	}))
 	// TODO
 

@@ -14,13 +14,13 @@ var (
 
 func main() {
 	service := web.NewService(
-		web.Name("go.micro.hello.micro.web.hello"),
+		web.Name("com.cnbattle.hello.micro.web.hello"),
 		web.Address(":1993"),
 		web.StaticDir("html"),
 	)
 	_ = service.Init()
 	// 实例化服务
-	srvClient = hello.NewHelloService("go.micro.hello.micro.svr.hello", service.Options().Service.Client())
+	srvClient = hello.NewHelloService("com.cnbattle.hello.micro.svr.hello", service.Options().Service.Client())
 	service.HandleFunc("/hi", Hi)
 
 	if err := service.Run(); err != nil {

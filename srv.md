@@ -72,7 +72,7 @@ GLOBAL OPTIONS:
    --register_ttl value            Register TTL in seconds (default: 60) [$MICRO_REGISTER_TTL]
    --register_interval value       Register interval in seconds (default: 30) [$MICRO_REGISTER_INTERVAL]
    --server value                  Server for go-micro; rpc [$MICRO_SERVER]
-   --server_name value             Name of the server. go.micro.srv.example [$MICRO_SERVER_NAME]
+   --server_name value             Name of the server. com.cnbattle.srv.example [$MICRO_SERVER_NAME]
    --server_version value          Version of the server. 1.1.0 [$MICRO_SERVER_VERSION]
    --server_id value               Id of the server. Auto-generated if not specified [$MICRO_SERVER_ID]
    --server_address value          Bind address for the server. 127.0.0.1:8080 [$MICRO_SERVER_ADDRESS]
@@ -89,6 +89,6 @@ GLOBAL OPTIONS:
    --transport_address value       Comma-separated list of transport addresses [$MICRO_TRANSPORT_ADDRESS]
    --help, -h                      show help
 ```
-例子:不使用原服务名称`go.micro.hello.micro.svr.hello`,用新的`go.micro.hello.micro.svr.helloword`
+例子:不使用原服务名称`com.cnbattle.hello.micro.svr.hello`,用新的`com.cnbattle.hello.micro.svr.helloword`
 
-`go run main.go --server_name=go.micro.hello.micro.svr.helloword`
+`go run main.go --server_name=com.cnbattle.hello.micro.svr.helloword`

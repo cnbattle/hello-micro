@@ -21,13 +21,13 @@ func (s Sub) Process(ctx context.Context, evt *logProto.LogEvt) error {
 
 func main() {
 	service := micro.NewService(
-		micro.Name("go.micro.hello.micro.srv.log"),
+		micro.Name("com.cnbattle.hello.micro.srv.log"),
 		micro.Version("latest"),
 	)
 
 	service.Init()
 
-	_ = micro.RegisterSubscriber("go.micro.hello.micro.topic.log", service.Server(), &Sub{})
+	_ = micro.RegisterSubscriber("com.cnbattle.hello.micro.topic.log", service.Server(), &Sub{})
 
 	if err := service.Run(); err != nil {
 		panic(err)

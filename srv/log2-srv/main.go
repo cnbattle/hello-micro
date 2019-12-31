@@ -9,7 +9,7 @@ import (
 func main() {
 	// New Service
 	service := micro.NewService(
-		micro.Name("go.micro.hello.micro.srv.log2"),
+		micro.Name("com.cnbattle.hello.micro.srv.log2"),
 		micro.Version("latest"),
 	)
 
@@ -25,7 +25,7 @@ func main() {
 		log.Fatalf("Broker Connect error: %v", err)
 	}
 
-	if _, err := broker.Subscribe("go.micro.hello.micro.topic.event", handler.Handler); err != nil {
+	if _, err := broker.Subscribe("com.cnbattle.hello.micro.topic.event", handler.Handler); err != nil {
 		log.Fatalf("broker.Subscribe error: %v", err)
 	}
 
