@@ -67,6 +67,27 @@ func ParseToken(tokenSrt string) (claims *Claims, err error) {
 	return &Claims{}, errors.New("Parse errors")
 }
 
+// RefreshToken 刷新验证并重新生成token
+func RefreshToken(tokenSrt string) (string, error) {
+	token, err := jwt.ParseWithClaims(tokenSrt, &Claims{}, func(token *jwt.Token) (interface{}, error) {
+		return []byte(Secret), nil
+	})
+	if err != nil {
+		return "", err
+	}
+	if err := token.Claims.Valid(); err != nil {
+		return "", err
+	}
+
+	claims, ok := token.Claims.(*Claims)
+	if !ok {
+		return "", errors.New("Parse errors")
+	}
+	claims.IssuedAt = time.Now().Unix()
+	claims.ExpiresAt = time.Now().Add(time.Second * time.Duration(ExpireTime)).Unix()
+	return jwt.NewWithClaims(jwt.SigningMethodHS256, claims).SignedString([]byte(Secret))
+}
+
 // VerifyToken 验证token
 func VerifyToken(tokenSrt string) bool {
 	token, err := jwt.ParseWithClaims(tokenSrt, &Claims{}, func(token *jwt.Token) (interface{}, error) {
