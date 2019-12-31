@@ -60,8 +60,7 @@ steps:
   - name: build
     image: golang:latest
     commands:
-      - cd srv/hello-srv/
-      - go build -v -o hello-srv -ldflags "-s -w" main.go
+      - go build -v -o hello-srv -ldflags "-s -w" srv/hello-srv/main.go
     volumes:
       - name: gopath
         path: /go
