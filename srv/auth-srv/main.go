@@ -10,7 +10,7 @@ import (
 
 var (
 	// microName
-	microName = "com.cnbattle.svr.user.auth"
+	microName = "com.cnbattle.svr.auth"
 )
 
 func main() {
