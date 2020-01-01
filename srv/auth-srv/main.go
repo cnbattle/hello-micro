@@ -1,15 +1,16 @@
 package main
 
 import (
-	"github.com/cnbattle/hello-micro/pkg/config"
 	"log"
 
+	"github.com/cnbattle/hello-micro/pkg/config"
 	proto "github.com/cnbattle/hello-micro/proto/auth"
 	"github.com/cnbattle/hello-micro/srv/auth-srv/handler"
 	_ "github.com/joho/godotenv/autoload"
 	"github.com/micro/go-micro"
-	"github.com/micro/go-micro/registry"
+	"github.com/micro/go-plugins/broker/rabbitmq"
 	"github.com/micro/go-plugins/registry/etcdv3"
+	"github.com/micro/go-plugins/transport/nats"
 )
 
 var (
@@ -19,15 +20,19 @@ var (
 
 func main() {
 	// etcdv3 registerDrive
-	registerDrive := etcdv3.NewRegistry(func(options *registry.Options) {
-		// etcd 地址
-		options.Addrs = []string{"127.0.0.1:2379"}
-		// etcd 用户名密码,如果设置的话
-		etcdv3.Auth("root", "password")(options)
-	})
+	registerDrive := etcdv3.NewRegistry()
+
+	// rabbitmq brokerDrive
+	brokerDrive := rabbitmq.NewBroker()
+
+	// nats transportDrive
+	transportDrive := nats.NewTransport()
+
 	service := micro.NewService(
 		micro.Name(microName),
 		micro.Registry(registerDrive),
+		micro.Broker(brokerDrive),
+		micro.Transport(transportDrive),
 	)
 
 	service.Init()

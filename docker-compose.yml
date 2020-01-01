@@ -18,11 +18,23 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
-    environment:
-      RABBITMQ_DEFAULT_USER: "root"
-      RABBITMQ_DEFAULT_PASS: "password"
     networks:
       - default
+  nats:
+    image: nats:latest
+#    hostname: nats-main
+#    command: "-c /tls.conf"
+#    volumes:
+#      - "./tls.conf:/tls.conf"
+#      - "./certs/server.pem:/certs/server.pem"
+#      - "./certs/server-key.pem:/certs/server-key.pem"
+#      - "./certs/ca.pem:/certs/ca.pem"
+#      - "./certs/route.pem:/certs/route.pem"
+#      - "./certs/route-key.pem:/certs/route-key.pem"
+    ports:
+      - "4222:4222"
+      - "6222:6222"
+      - "8222:8222"
 
 
 networks:
