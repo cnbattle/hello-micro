@@ -1,6 +1,9 @@
 package main
 
 import (
+	"github.com/micro/go-micro/broker"
+	"github.com/micro/go-micro/registry"
+	"github.com/micro/go-micro/transport"
 	"log"
 
 	"github.com/cnbattle/hello-micro/pkg/config"
@@ -20,13 +23,19 @@ var (
 
 func main() {
 	// etcdv3 registerDrive
-	registerDrive := etcdv3.NewRegistry()
+	registerDrive := etcdv3.NewRegistry(func(options *registry.Options) {
+		options.Addrs = []string{"127.0.0.1:2379"}
+	})
 
 	// rabbitmq brokerDrive
-	brokerDrive := rabbitmq.NewBroker()
+	brokerDrive := rabbitmq.NewBroker(func(options *broker.Options) {
+		options.Addrs = []string{"127.0.0.1:5672"}
+	})
 
 	// nats transportDrive
-	transportDrive := nats.NewTransport()
+	transportDrive := nats.NewTransport(func(options *transport.Options) {
+		options.Addrs = []string{"127.0.0.1:4222"}
+	})
 
 	service := micro.NewService(
 		micro.Name(microName),
