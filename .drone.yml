@@ -233,4 +233,3 @@ depends_on:
   - hello-srv
   - auth-srv
   - user-srv
-  - article-srv
