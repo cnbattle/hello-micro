@@ -28,16 +28,3 @@ Registry use `etcd` [project address](https://github.com/etcd-io/etcd)
 [server相关](srv.md)
 
 [client web相关](web/hello-web/main.go)
-
-## run
-```
-# run micro service
-~ go run srv/hello-srv/main.go
-# run web service
-~ cd web/hello-web/   
-~ go run main.go
-
-# test
-~ curl "http://127.0.0.1:1993/hi?name=Friends"
-Hello Friends
-```
