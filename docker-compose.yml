@@ -1,13 +1,13 @@
 version: "3"
 services:
-  etcd-server:
+  etcd:
     image: bitnami/etcd:latest
     ports:
       - "2379:2379"
       - "2380:2380"
     environment:
       ALLOW_NONE_AUTHENTICATION: "yes"
-      ETCD_ADVERTISE_CLIENT_URLS: "http://etcd-server:2379"
+      ETCD_ADVERTISE_CLIENT_URLS: "http://etcd:2379"
     restart: always
     networks:
       - default
@@ -26,7 +26,6 @@ services:
       - "4222:4222"
       - "6222:6222"
       - "8222:8222"
-
 
 networks:
   default:

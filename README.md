@@ -14,6 +14,12 @@ Broker use `rabbitmq` [project address](https://github.com/rabbitmq/rabbitmq-ser
 Registry use `etcd` [project address](https://github.com/etcd-io/etcd)
 
 
+## docker-compose
+run `etcd` and `rabbitMQ` and `nats`
+```shell script
+docker-compose up -d
+```
+
 ## TODO
 
 ### 基础服务
