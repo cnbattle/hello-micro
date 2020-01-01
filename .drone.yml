@@ -209,59 +209,6 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: article-srv
-
-platform:
-  os: linux
-  arch: amd64
-
-steps:
-  - name: build
-    image: golang:latest
-    commands:
-      - go build -v -o article-srv -ldflags "-s -w" srv/article-srv/main.go
-    volumes:
-      - name: gopath
-        path: /go
-
-  - name : upx
-    image: cnbattle/drone-upx
-    settings:
-      level: 9
-      save_file: ./article-srv-upx
-      original_file: ./article-srv
-    volumes:
-      - name: gopath
-        path: /go
-
-  - name: run
-    image: golang:latest
-    commands:
-      - ./article-srv-upx --help
-    volumes:
-      - name: gopath
-        path: /go
-
-  - name: failure notification
-    image: appleboy/drone-telegram
-    settings:
-      token:
-        from_secret: telegram_token
-      to:
-        from_secret: telegram_user_id
-    when:
-      status: [ failure ]
-
-volumes:
-  - name: gopath
-    temp: {}
-
-depends_on:
-  - testing
-
----
-kind: pipeline
-type: docker
 name: notifications
 
 platform:
