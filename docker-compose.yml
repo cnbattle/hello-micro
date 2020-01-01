@@ -20,6 +20,7 @@ services:
       - "15672:15672"
     networks:
       - default
+
   nats:
     image: nats:latest
     ports:
