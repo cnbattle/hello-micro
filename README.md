@@ -5,7 +5,14 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/cnbattle/hello-micro)](https://goreportcard.com/report/github.com/cnbattle/hello-micro)
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg?style=flat-square)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
 
-> go-micro 相关
+> go-micro 学习代码
+
+Transport use `nats` [project address](https://github.com/nats-io/nats-server)
+
+Broker use `rabbitmq` [project address](https://github.com/rabbitmq/rabbitmq-server)
+ 
+Registry use `etcd` [project address](https://github.com/etcd-io/etcd)
+
 
 ## TODO
 
