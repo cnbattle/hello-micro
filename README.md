@@ -7,14 +7,13 @@
 
 > go-micro 学习代码
 
-Transport use `nats` [project address](https://github.com/nats-io/nats-server)
+Transport `同步消息` use `nats` [project address](https://github.com/nats-io/nats-server)
 
-Broker use `rabbitmq` [project address](https://github.com/rabbitmq/rabbitmq-server)
+Broker `异步消息` use `rabbitmq` [project address](https://github.com/rabbitmq/rabbitmq-server)
  
-Registry use `etcd` [project address](https://github.com/etcd-io/etcd)
+Registry `服务发现` use `etcd` [project address](https://github.com/etcd-io/etcd)
 
-
-## docker-compose
+## docker- compose
 run `etcd` and `rabbitMQ` and `nats`
 ```shell script
 docker-compose up -d
