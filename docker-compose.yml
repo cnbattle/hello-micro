@@ -1,0 +1,29 @@
+version: "3"
+services:
+  etcd-server:
+    image: bitnami/etcd:latest
+    ports:
+      - "2379:2379"
+      - "2380:2380"
+    environment:
+      ALLOW_NONE_AUTHENTICATION: "yes"
+      ETCD_ADVERTISE_CLIENT_URLS: "http://etcd-server:2379"
+    restart: always
+    networks:
+      - default
+
+  rabbitmq:
+    image: rabbitmq:latest
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: "root"
+      RABBITMQ_DEFAULT_PASS: "password"
+    networks:
+      - default
+
+
+networks:
+  default:
