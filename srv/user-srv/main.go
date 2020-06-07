@@ -5,7 +5,7 @@ import (
 
 	"github.com/cnbattle/hello-micro/srv/user-srv/handler"
 	user "github.com/cnbattle/hello-micro/srv/user-srv/proto"
-	"github.com/micro/go-micro"
+	"github.com/micro/go-micro/v2"
 )
 
 func main() {

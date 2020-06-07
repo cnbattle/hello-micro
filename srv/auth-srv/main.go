@@ -1,16 +1,18 @@
 package main
 
 import (
-	"github.com/micro/go-micro/broker"
-	"github.com/micro/go-micro/registry"
-	"github.com/micro/go-micro/transport"
 	"log"
 
 	"github.com/cnbattle/hello-micro/pkg/config"
 	proto "github.com/cnbattle/hello-micro/proto/auth"
 	"github.com/cnbattle/hello-micro/srv/auth-srv/handler"
 	_ "github.com/joho/godotenv/autoload"
-	"github.com/micro/go-micro"
+
+	"github.com/micro/go-micro/v2"
+	"github.com/micro/go-micro/v2/broker"
+	"github.com/micro/go-micro/v2/registry"
+	"github.com/micro/go-micro/v2/transport"
+
 	"github.com/micro/go-plugins/broker/rabbitmq"
 	"github.com/micro/go-plugins/registry/etcdv3"
 	"github.com/micro/go-plugins/transport/nats"

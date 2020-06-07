@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/cnbattle/hello-micro/srv/log2-srv/handler"
-	"github.com/micro/go-micro"
-	"github.com/micro/go-micro/util/log"
+	"github.com/micro/go-micro/v2"
+	"github.com/micro/go-micro/v2/util/log"
 )
 
 func main() {

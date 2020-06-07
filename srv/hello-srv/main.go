@@ -4,17 +4,19 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"time"
+
 	"github.com/cnbattle/hello-micro/proto/hello"
 	logProto "github.com/cnbattle/hello-micro/proto/log"
 	"github.com/cnbattle/hello-micro/proto/log2"
 	"github.com/cnbattle/hello-micro/srv/hello-srv/handler"
+
 	"github.com/google/uuid"
-	"github.com/micro/go-micro"
-	"github.com/micro/go-micro/broker"
-	"github.com/micro/go-micro/client"
-	"github.com/micro/go-micro/server"
-	"github.com/micro/go-micro/util/log"
-	"time"
+	"github.com/micro/go-micro/v2"
+	"github.com/micro/go-micro/v2/broker"
+	"github.com/micro/go-micro/v2/client"
+	"github.com/micro/go-micro/v2/server"
+	"github.com/micro/go-micro/v2/util/log"
 )
 
 func main() {

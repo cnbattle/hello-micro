@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"github.com/cnbattle/hello-micro/proto/hello"
-	"github.com/micro/go-micro/web"
+	"github.com/micro/go-micro/v2/web"
 	"net/http"
 )
 
