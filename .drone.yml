@@ -11,7 +11,7 @@ steps:
   - name: vet
     image: golang:latest
     commands:
-      - go vet -v ./...
+      - make vet
     volumes:
       - name: gopath
         path: /go
@@ -19,8 +19,7 @@ steps:
   - name: lint
     image: golang:latest
     commands:
-      - go get -u github.com/mgechev/revive
-      - revive -config .revive.toml ./... || exit 1
+      - make lint
     volumes:
       - name: gopath
         path: /go
@@ -28,7 +27,7 @@ steps:
   - name: test
     image: golang:latest
     commands:
-      - go test -v ./...
+      - make test
     volumes:
       - name: gopath
         path: /go
